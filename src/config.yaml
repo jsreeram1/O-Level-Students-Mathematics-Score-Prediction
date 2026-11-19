@@ -1,23 +1,71 @@
-file_path: './data/regression_bonus_practice_data.csv'
-target_column: final_test
-val_test_size: 0.2
-val_size: 0.5
-param_grid:
-  regressor__alpha: [0.1, 1, 10, 100, 1000]
-  regressor__fit_intercept: [True, False]
-cv: 5
-scoring: r2
+file_path: "data/student_data.csv"
+target_column: "final_test"
+output_dir: "artifacts"
+random_state: 42
+val_test_size: 0.20     # 20% held out for validation + test
+val_size: 0.50          # Split the 20% evenly: 10% val, 10% test
+cv_folds: 5
+selection_metric: "R2"  # Primary metric ("R2" or "RMSE")
+
 numerical_features:
-  - number_of_siblings
-  - age
-  - hours_per_week
-  - attendance_rate
-  - duration_hours
-  - total_class_size
+  - "age"
+  - "attendance_rate"
+  - "duration_hours"
+  - "total_class_size"
+
 nominal_features:
-  - CCA
-  - learning_style
+  - "CCA"
+  - "learning_style"
+
 passthrough_features:
-  - direct_admission
-  - gender
-  - tuition
+  - "gender"
+  - "tuition"
+  - "direct_admission"
+
+columns_to_drop:
+  - "student_id"
+  - "mode_of_transport"
+  - "bag_color"
+  - "sleep_time"
+  - "wake_time"
+  - "n_male"
+  - "n_female"
+  - "index"
+
+param_grids:
+  ridge:
+    regressor__alpha:
+      - 0.1
+      - 1.0
+      - 10.0
+      - 100.0
+      - 1000.0
+  lasso:
+    regressor__alpha:
+      - 0.01
+      - 0.1
+      - 1.0
+      - 10.0
+      - 100.0
+  random_forest:
+    regressor__n_estimators:
+      - 100
+      - 200
+    regressor__max_depth:
+      - 8
+      - 15
+      - null
+    regressor__min_samples_split:
+      - 2
+      - 5
+  gradient_boosting:
+    regressor__n_estimators:
+      - 100
+      - 200
+    regressor__learning_rate:
+      - 0.05
+      - 0.1
+    regressor__max_depth:
+      - 3
+      - 5
+
