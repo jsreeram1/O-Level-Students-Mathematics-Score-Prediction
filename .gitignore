@@ -1,7 +1,37 @@
-# .gitignore content
+# Python Bytecode & Cache
 __pycache__/
-*.pyc
-.DS_Store
-.ipynb_checkpoints/
-.env
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+
+# Virtual & Conda Environments
+.venv/
 venv/
+env/
+schenv/
+
+# Jupyter Notebook Checkpoints
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+
+# Pytest & Coverage Cache
+.pytest_cache/
+.coverage
+htmlcov/
+
+# IDE & Editor Settings
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temporary Logs
+*.log
+
